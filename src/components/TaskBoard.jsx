@@ -8,9 +8,9 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { format } from "date-fns";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+// const socket = io("http://localhost:5000");
 
 const ItemType = "TASK";
 
@@ -23,14 +23,14 @@ const TaskBoard = () => {
   const [editingTask, setEditingTask] = useState(null);
   const [editedTask, setEditedTask] = useState({ title: "", description: "" });
 
-  useEffect(() => {
-    socket.on("connect", () => console.log("Connected to WebSocket Server"));
-    socket.on("taskUpdated", (updatedTasks) => setTasks(updatedTasks));
-    return () => {
-      socket.off("taskUpdated");
-      socket.disconnect();
-    };
-  }, []);
+  // useEffect(() => {
+  //   socket.on("connect", () => console.log("Connected to WebSocket Server"));
+  //   socket.on("taskUpdated", (updatedTasks) => setTasks(updatedTasks));
+  //   return () => {
+  //     socket.off("taskUpdated");
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
   useEffect(() => {
     axiosPublic.get("/tasks").then((response) => setTasks(response.data)).catch(console.error);
